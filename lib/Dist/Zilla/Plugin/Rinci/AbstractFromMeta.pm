@@ -1,7 +1,7 @@
 package Dist::Zilla::Plugin::Rinci::AbstractFromMeta;
 
 our $DATE = '2014-12-14'; # DATE
-our $VERSION = '0.01'; # VERSION
+our $VERSION = '0.02'; # VERSION
 
 use 5.010001;
 use strict;
@@ -33,6 +33,16 @@ sub _get_abstract_from_meta {
         ~~<$fh>;
     };
 
+    unless ($content =~ m{^#[ \t]*ABSTRACT:[ \t]*([^\n]*)[ \t]*$}m) {
+        return undef;
+    }
+
+    my $abstract = $1;
+    if ($abstract =~ /\S/) {
+        #$self->log_debug(["skipping %s: Abstract already filled (%s)", $filename, $abstract]);
+        return $abstract;
+    }
+
     # find out the package of the file
     my $pkg;
     if ($content =~ m{^\s*package\s+(\w+(?:::\w+)*)\s*;}m) {
@@ -48,7 +58,7 @@ sub _get_abstract_from_meta {
     no strict 'refs';
     my $metas = \%{"$pkg\::SPEC"};
 
-    my $abstract;
+    $abstract = undef;
     {
         if ($metas->{':package'}) {
             $abstract = $metas->{':package'}{summary};
@@ -107,19 +117,7 @@ sub munge_file {
         return;
     }
 
-    unless ($content =~ m{^#[ \t]*ABSTRACT:[ \t]*([^\n]*)[ \t]*$}m) {
-        $self->log_debug(["skipping %s: no # ABSTRACT directive found", $file->name]);
-        return;
-    }
-
-    my $abstract = $1;
-    if ($abstract =~ /\S/) {
-        $self->log_debug(["skipping %s: Abstract already filled (%s)", $file->name, $abstract]);
-        return;
-    }
-
-    $abstract = $self->_get_abstract_from_meta($file->name);
-
+    my $abstract = $self->_get_abstract_from_meta($file->name);
     unless (defined $abstract) {
         die "Can't figure out abstract for " . $file->name;
     }
@@ -146,7 +144,7 @@ Dist::Zilla::Plugin::Rinci::AbstractFromMeta - Fill out abstract from Rinci meta
 
 =head1 VERSION
 
-This document describes version 0.01 of Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-14.
+This document describes version 0.02 of Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-14.
 
 =head1 SYNOPSIS
 
@@ -174,8 +172,6 @@ metadata, why repeat it in the dzil Abstract?
 =head1 SEE ALSO
 
 L<Rinci>
-
-L<Dist::Zilla::Plugin::Rinci::PodnameFromMeta>
 
 =head1 HOMEPAGE
 

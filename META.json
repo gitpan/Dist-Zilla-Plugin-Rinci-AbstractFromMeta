@@ -54,7 +54,7 @@
          "web" : "https://github.com/perlancar/perl-Dist-Zilla-Plugin-Rinci-AbstractFromMeta"
       }
    },
-   "version" : "0.01",
+   "version" : "0.02",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"
@@ -145,6 +145,16 @@
             "class" : "Dist::Zilla::Plugin::UploadToCPAN",
             "name" : "@Author::PERLANCAR/@Filter/UploadToCPAN",
             "version" : "5.025"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Rinci::AbstractFromMeta",
+            "name" : "@Author::PERLANCAR/Rinci::AbstractFromMeta",
+            "version" : "0.01"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::PodnameFromFilename",
+            "name" : "@Author::PERLANCAR/PodnameFromFilename",
+            "version" : "0.01"
          },
          {
             "class" : "Dist::Zilla::Plugin::PERLANCAR::MetaResources",

@@ -27,7 +27,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Rinci-AbstractFromMeta
   homepage: https://metacpan.org/release/Dist-Zilla-Plugin-Rinci-AbstractFromMeta
   repository: git://github.com/perlancar/perl-Dist-Zilla-Plugin-Rinci-AbstractFromMeta.git
-version: '0.03'
+version: '0.04'
 x_Dist_Zilla:
   perl:
     version: '5.018002'
@@ -103,7 +103,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Rinci::AbstractFromMeta
       name: '@Author::PERLANCAR/Rinci::AbstractFromMeta'
-      version: '0.02'
+      version: '0.03'
     -
       class: Dist::Zilla::Plugin::PodnameFromFilename
       name: '@Author::PERLANCAR/PodnameFromFilename'

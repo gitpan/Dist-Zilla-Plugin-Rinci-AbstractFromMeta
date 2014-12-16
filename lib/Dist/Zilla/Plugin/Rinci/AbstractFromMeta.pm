@@ -1,7 +1,7 @@
 package Dist::Zilla::Plugin::Rinci::AbstractFromMeta;
 
 our $DATE = '2014-12-16'; # DATE
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 use 5.010001;
 use strict;
@@ -176,6 +176,11 @@ sub munge_file {
     my ($self, $file) = @_;
     my $content = $file->content;
 
+    unless ($file->isa("Dist::Zilla::File::OnDisk")) {
+        $self->log_debug(["skipping %s: not an ondisk file, currently generated file is assumed to be OK", $file->name]);
+        return;
+    }
+
     my $abstract = $self->_get_abstract_from_meta($file->name);
     unless (defined $abstract) {
         die "Can't figure out abstract for " . $file->name;
@@ -203,7 +208,7 @@ Dist::Zilla::Plugin::Rinci::AbstractFromMeta - Fill out abstract from Rinci meta
 
 =head1 VERSION
 
-This document describes version 0.03 of Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-16.
+This document describes version 0.04 of Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-16.
 
 =head1 SYNOPSIS
 

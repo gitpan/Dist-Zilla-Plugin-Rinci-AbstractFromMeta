@@ -3,7 +3,7 @@ NAME
     Rinci metadata
 
 VERSION
-    This document describes version 0.03 of
+    This document describes version 0.04 of
     Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution
     Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-16.
 

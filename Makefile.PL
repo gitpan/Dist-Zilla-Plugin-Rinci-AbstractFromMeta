@@ -20,8 +20,12 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::Plugin::Rinci::AbstractFromMeta",
   "PREREQ_PM" => {
+    "Capture::Tiny" => 0,
     "Data::Dump" => 0,
-    "Dist::Zilla" => 0
+    "Dist::Zilla" => 0,
+    "File::Slurp::Tiny" => 0,
+    "Perinci::Access" => 0,
+    "UUID::Random" => 0
   },
   "TEST_REQUIRES" => {
     "File::Spec" => 0,
@@ -29,7 +33,7 @@ my %WriteMakefileArgs = (
     "IPC::Open3" => 0,
     "Test::More" => 0
   },
-  "VERSION" => "0.02",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -37,13 +41,17 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Capture::Tiny" => 0,
   "Data::Dump" => 0,
   "Dist::Zilla" => 0,
   "ExtUtils::MakeMaker" => 0,
+  "File::Slurp::Tiny" => 0,
   "File::Spec" => 0,
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
-  "Test::More" => 0
+  "Perinci::Access" => 0,
+  "Test::More" => 0,
+  "UUID::Random" => 0
 );
 
 

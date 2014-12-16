@@ -17,13 +17,17 @@ meta-spec:
   version: '1.4'
 name: Dist-Zilla-Plugin-Rinci-AbstractFromMeta
 requires:
+  Capture::Tiny: '0'
   Data::Dump: '0'
   Dist::Zilla: '0'
+  File::Slurp::Tiny: '0'
+  Perinci::Access: '0'
+  UUID::Random: '0'
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Dist-Zilla-Plugin-Rinci-AbstractFromMeta
   homepage: https://metacpan.org/release/Dist-Zilla-Plugin-Rinci-AbstractFromMeta
   repository: git://github.com/perlancar/perl-Dist-Zilla-Plugin-Rinci-AbstractFromMeta.git
-version: '0.02'
+version: '0.03'
 x_Dist_Zilla:
   perl:
     version: '5.018002'
@@ -99,7 +103,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Rinci::AbstractFromMeta
       name: '@Author::PERLANCAR/Rinci::AbstractFromMeta'
-      version: '0.01'
+      version: '0.02'
     -
       class: Dist::Zilla::Plugin::PodnameFromFilename
       name: '@Author::PERLANCAR/PodnameFromFilename'
@@ -143,59 +147,59 @@ x_Dist_Zilla:
             -
               class: Pod::Weaver::Plugin::EnsurePod5
               name: '@CorePrep/EnsurePod5'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Plugin::H1Nester
               name: '@CorePrep/H1Nester'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Name
               name: '@Author::PERLANCAR/Name'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Version
               name: '@Author::PERLANCAR/Version'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Region
               name: '@Author::PERLANCAR/prelude'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Generic
               name: SYNOPSIS
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Generic
               name: DESCRIPTION
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Generic
               name: OVERVIEW
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Collect
               name: ATTRIBUTES
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Collect
               name: METHODS
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Collect
               name: FUNCTIONS
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Plugin::Rinci
               name: '@Author::PERLANCAR/Rinci'
-              version: '0.23'
+              version: '0.24'
             -
               class: Pod::Weaver::Section::Leftovers
               name: '@Author::PERLANCAR/Leftovers'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Region
               name: '@Author::PERLANCAR/postlude'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Completion::GetoptLongComplete
               name: '@Author::PERLANCAR/Completion::GetoptLongComplete'
@@ -219,11 +223,11 @@ x_Dist_Zilla:
             -
               class: Pod::Weaver::Section::Authors
               name: '@Author::PERLANCAR/Authors'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Section::Legal
               name: '@Author::PERLANCAR/Legal'
-              version: '4.008'
+              version: '4.009'
             -
               class: Pod::Weaver::Plugin::EnsureUniqueSections
               name: '@Author::PERLANCAR/EnsureUniqueSections'
@@ -231,7 +235,7 @@ x_Dist_Zilla:
             -
               class: Pod::Weaver::Plugin::SingleEncoding
               name: '@Author::PERLANCAR/SingleEncoding'
-              version: '4.008'
+              version: '4.009'
       name: '@Author::PERLANCAR/PodWeaver'
       version: '4.006'
     -

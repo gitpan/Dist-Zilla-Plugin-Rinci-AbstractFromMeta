@@ -1,7 +1,7 @@
 package Dist::Zilla::Plugin::Rinci::AbstractFromMeta;
 
 our $DATE = '2014-12-17'; # DATE
-our $VERSION = '0.05'; # VERSION
+our $VERSION = '0.06'; # VERSION
 
 use 5.010001;
 use strict;
@@ -48,7 +48,7 @@ sub _get_from_module {
         # list functions, sorted by the length of its metadata dump
         my @funcs =
             map {$_->[0]}
-                sort {length($a->[1]) <=> length($b->[1])}
+                sort {length($b->[1]) <=> length($a->[1])}
                     map { [$_, dump($metas->{$_})] }
                         grep {/\A\w+\z/} keys %$metas;
         if (@funcs) {
@@ -222,7 +222,7 @@ Dist::Zilla::Plugin::Rinci::AbstractFromMeta - Fill out abstract from Rinci meta
 
 =head1 VERSION
 
-This document describes version 0.05 of Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-17.
+This document describes version 0.06 of Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-17.
 
 =head1 SYNOPSIS
 

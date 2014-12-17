@@ -1,7 +1,7 @@
 package Dist::Zilla::Plugin::Rinci::AbstractFromMeta;
 
-our $DATE = '2014-12-16'; # DATE
-our $VERSION = '0.04'; # VERSION
+our $DATE = '2014-12-17'; # DATE
+our $VERSION = '0.05'; # VERSION
 
 use 5.010001;
 use strict;
@@ -35,10 +35,14 @@ sub _get_from_module {
     my $metas = \%{"$pkg\::SPEC"};
 
     my $abstract;
+  FIND_ABSTRACT:
     {
         if ($metas->{':package'}) {
             $abstract = $metas->{':package'}{summary};
-            last if $abstract;
+            if ($abstract) {
+                $self->log_debug(["Got summary from package metadata (%s)", $abstract]);
+                last;
+            }
         }
 
         # list functions, sorted by the length of its metadata dump
@@ -48,8 +52,18 @@ sub _get_from_module {
                     map { [$_, dump($metas->{$_})] }
                         grep {/\A\w+\z/} keys %$metas;
         if (@funcs) {
-            $abstract = $metas->{ $funcs[0] }{summary};
-            last if $abstract;
+            for (@funcs) {
+                $abstract = $metas->{$_}{summary};
+                if ($abstract) {
+                    $self->log_debug(["Got summary from function metadata, function=%s (%s)", $_, $abstract]);
+                    last FIND_ABSTRACT;
+                } else {
+                    $self->log_debug(["Function %s does not have summary in its metadata", $_]);
+                }
+            }
+            $self->log_debug(["None of the function metadata in package %s has summary", $pkg]);
+        } else {
+            $self->log_debug(["No function metadata found in package %s", $pkg]);
         }
     }
     return $abstract;
@@ -208,7 +222,7 @@ Dist::Zilla::Plugin::Rinci::AbstractFromMeta - Fill out abstract from Rinci meta
 
 =head1 VERSION
 
-This document describes version 0.04 of Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-16.
+This document describes version 0.05 of Dist::Zilla::Plugin::Rinci::AbstractFromMeta (from Perl distribution Dist-Zilla-Plugin-Rinci-AbstractFromMeta), released on 2014-12-17.
 
 =head1 SYNOPSIS
 
